@@ -1,0 +1,87 @@
+Bài 1:
+Giải thích các câu lệnh: git commit --amend, git commit --amend -m”<message>”, git restore --staged <file>, git reset HEAD~1. 
+Trả lời
+git commit --amend: dùng để sửa commit gần nhất, khi chạy lệnh này thì git sẽ mở ra editor 
+git commit --amend -m”<message>”: dùng để chỉnh sửa commit nhưng không mở editor và nội dung message được chỉnh sửa luôn
+git restore --staged <file>: Chuyển file đã add từ vùng staging về vùng working directory
+git reset HEAD~1: uncommit 1 commit từ vùng repository về vùng working directory
+
+Bài 2:
+a. Tạo 3 file: file1, file2, file3 
+=> Lúc này 3 file này đều ở vùng working directory
+- vùng staging : không có file
+- Vùng Repository: Không có file
+
+b. Chạy lệnh: git init 
+
+=> 
+- Working directory: file1, file2,file3
+- vùng staging : không có file
+- Vùng Repository: Không có file
+c. Chạy lệnh: git commit -m”init project” 
+=> Vì file chưa được add nên không không có file nào ở staging nên không có file để commit
+- Working directory: file1, file2,file3
+- vùng staging : không có file
+- Vùng Repository: Không có file
+
+d. Chạy lệnh: git add file1 
+=>
+- Working directory: file2,file3
+- vùng staging : file1
+- Vùng Repository: Không có file
+
+e. Chạy lệnh: git commit -m”add file” 
+=>
+- Working directory: file2,file3
+- vùng staging : không có file
+- Vùng Repository: file1
+
+f. Chạy lệnh: git add . 
+=>
+- Working directory: Không có file
+- vùng staging : file2,file3
+- Vùng Repository: file1
+
+g. Chạy lệnh: git restore --staged file2 
+=>
+- Working directory: file2
+- vùng staging : file3
+- Vùng Repository: file1
+
+h. Chạy lệnh: git commit -m”add all files” 
+=>
+- Working directory: file2
+- vùng staging : Không có file
+- Vùng Repository: file1, file3
+
+i. Chạy lệnh: git reset HEAD~1 
+=>
+- Working directory: file2, file3
+- vùng staging :  Không có file
+- Vùng Repository: file1
+Bài 3:
+a. Chạy lệnh git init 
+=> Khởi tạo git 
+b. Tạo file file1.txt, file2.txt, oops/file3.txt. 
+=>
+- Working directory:file.txt, file2.txt, oop/file3.text
+- vùng staging :  Không có file
+- Vùng Repository: Không có file
+c. Thêm file .gitignore, thêm vào 2 dòng: 
+i. file1.txt 
+ii. oops/
+=>
+- Working directory:file.txt, file2.txt, oops/file3.text, .gitignore
+- vùng staging :  Không có file
+- Vùng Repository: Không có file
+
+d. Chạy lệnh: git add . 
+=>
+- Working directory:file.txt, oops/
+- vùng staging :  file2.txt,  .gitignore
+- Vùng Repository: Không có file
+e. Chạy lệnh: git commit -m"init project" 
+=>
+- Working directory:file.txt, oops/
+- vùng staging : Không có file
+- Vùng Repository:  file2.txt, .gitignore
